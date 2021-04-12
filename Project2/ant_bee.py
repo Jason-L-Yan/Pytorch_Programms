@@ -33,7 +33,7 @@ data_transform = {
     ]),
 }
 
-data_dir = 'Project2/hymenoptera_data'
+data_dir = 'D:\GitHub\Pytorch_Programms\Project2\hymenoptera_data'
 image_dataset = {x: datasets.ImageFolder(os.path.join(data_dir, x), data_transform[x]) for x in ['train', 'val']}  # 打开图片途径并转换成 tensor
 dataloaders = {x: torch.utils.data.DataLoader(dataset=image_dataset[x], batch_size=4, shuffle=True) for x in ['train', 'val']}  # 数据封装
 dataset_sizes = {x: len(image_dataset[x]) for x in ['train', 'val']}  # {'train': 244, 'val': 153}
@@ -63,6 +63,7 @@ def imshow(inp, title=None):
 
 # Get a batch of training data
 inputs, classes = next(iter(dataloaders['train']))
+print('inputs.shape:', inputs.shape)
 # # # # Make a grid from batch
 out = torchvision.utils.make_grid(inputs)
 imshow(out, title=[class_name[x] for x in classes])
